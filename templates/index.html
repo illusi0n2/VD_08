@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Случайные цитаты</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .quote-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .quote-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="text-center text-white mb-4">
+                    <h1 class="display-5 fw-bold">
+                        <i class="bi bi-chat-quote"></i> Случайные цитаты
+                    </h1>
+                </div>
+
+                <div class="card quote-card p-4 mb-3">
+                    <div class="card-body text-center">
+                        {% if quote %}
+                            <div class="mb-3">
+                                <i class="bi bi-quote display-4 text-primary"></i>
+                            </div>
+                            <blockquote class="quote-text mb-3">
+                                "{{ quote.translated_quote }}"
+                            </blockquote>
+                            <footer class="author h5 text-muted mb-2">
+                                — {{ quote.translated_author }}
+                            </footer>
+                            <div class="category">
+                                <span class="badge bg-primary">{{ quote.translated_category }}</span>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                Не удалось загрузить цитату. Проверьте API ключ.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="/" class="btn btn-primary btn-lg">
+                        <i class="bi bi-arrow-clockwise"></i> Получить новую цитату
+                    </a>
+                </div>
+
+                <div class="text-center mt-3">
+                    <small class="text-white-50">
+                        <i class="bi bi-info-circle"></i> Для обновления цитаты нажмите кнопку выше
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (только для компонентов, если нужны) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
